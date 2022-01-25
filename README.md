@@ -69,24 +69,25 @@ dependencyResolutionManagement {
 
 * GlucoseRecord
   > 혈당 정보
-  * sequenceNumber:
-  * time:
-  * glucoseData:
-  * flag_cs
-  * flag_hilow
-  * flag_context
-  * flag_meal
-  * flag_fasting
-  * flag_ketone
-  * flag_nomark
-  * timeoffset
+  * sequenceNumber: int
+  * time: long
+  * glucoseData: double
+  * keton: double
+  * flag_cs: int
+  * flag_hilow: int
+  * flag_context: int
+  * flag_meal: int
+  * flag_fasting: int
+  * flag_ketone: int
+  * flag_nomark: int 
+  * timeoffset: int
 
 * DeviceInfo
   > 기기 정보
-  * name:
-  * serialNumber:
-  * version:
-  * totalcount
+  * name: String? 
+  * serialNumber: String?
+  * version: Array<String>?
+  * totalcount: Int?
 
 # Interface
 * BluetoothInitializeCallbacks
@@ -108,7 +109,8 @@ dependencyResolutionManagement {
   * requestRecordsGreaterOrEqual(sequenceNumber: Int): sequenceNumber보다 큰 혈당 데이터만 수신
   * requestRecentRecord(): 가장 최신 혈당 데이터를 수신
 
-# Usage* 서비스 등록 (AndroidManifest.xml)
+# Usage
+* 서비스 등록 (AndroidManifest.xml)
 ```xml
   <service android:name=".CaresensBluetoothService" android:enabled="true" />
 ```
