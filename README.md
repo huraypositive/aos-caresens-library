@@ -88,7 +88,29 @@ dependencyResolutionManagement {
   * serialNumber: String?
   * version: Array<String>?
   * totalcount: Int?
-
+  
+# Type Classes
+* ScanState
+> 블루투스 스캔 연결 상태 유형
+* FAIL: 실패
+* SCANNING: 스캔중
+* STOPPED: 스캔중지
+* ConnectState
+> 블루투스 기기 연결 상태 유형
+* CONNECTING
+* CONNECTED
+* DISCONNECTED
+* ERROR
+* UNKNOWN
+* DataReadState
+> 혈당 데이터 상태 유형
+* DEVICE_INFO_READ_COMPLETE
+* GlUCOSE_RECORD_READ_COMPLETE
+* BLE_DEVICE_NOT_SUPPORTED
+* BLE_OPERATE_FAILED
+* BLE_OPERATE_NOT_SUPPORTED
+* UNKNOWN_ERROR
+  
 # Interface
 * BluetoothInitializeCallbacks
   * fun onSuccess()
