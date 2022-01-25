@@ -115,7 +115,7 @@ dependencyResolutionManagement {
   <service android:name=".CaresensBluetoothService" android:enabled="true" />
 ```
   
-* 서비스 시작
+* 서비스 시작(초기화)
 > 하단에 설명되어있는 set Interface 메서드를 활용해서도 상태값 콜백 메서드를 선언 가능합니다
 ~~~kotlin
   private var serviceConnection = object : ServiceConnection {
@@ -139,9 +139,13 @@ dependencyResolutionManagement {
   }
 ~~~
   
+* 서비스 시작(초기화) 콜백 메서드 설정
+~~~kotlin
+  caresensBluetoothService?.setBluetoothInitializeCallbacks(bluetoothInitializeCallbacks: BluetoothInitializeCallbacks?)
+~~~
+  
 * 서비스 종료
 ~~~kotlin
-  caresensBluetoothService?.disConnect()
 ~~~
 
 * 스캔 시작
@@ -152,4 +156,29 @@ dependencyResolutionManagement {
 * 스캔 종료
 ~~~kotlin
   caresensBluetoothService?.stopScan()
+~~~
+
+* 스캔 상태 콜백 메서드 설정
+~~~kotlin
+  caresensBluetoothService?.setBluetoothScanCallbacks(bluetoothScanCallbacks: BluetoothScanCallbacks?)
+~~~
+   
+* 블루투스 기기와 연결
+~~~kotlin
+  caresensBluetoothService?.connect(device: BluetoothDevice?)
+~~~
+  
+* 블루투스 기기와 연결 해제
+~~~kotlin
+  caresensBluetoothService?.disconnect()
+~~~
+  
+* 연결 상태 콜백 메서드 설정
+~~~kotlin
+  caresensBluetoothService?.setBluetoothConnectionCallbacks(bluetoothConnectionCallbacks: BluetoothConnectionCallbacks?)
+~~~
+  
+* 연결 상태 콜백 메서드 설정
+~~~kotlin
+  caresensBluetoothService?.setBluetoothDataCallbacks(bluetoothDataCallbacks: BluetoothDataCallbacks?)
 ~~~
