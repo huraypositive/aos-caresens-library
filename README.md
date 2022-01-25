@@ -136,3 +136,18 @@ dependencyResolutionManagement {
       bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
   }
 ~~~
+  
+* 서비스 종료
+~~~kotlin
+  caresensBluetoothService?.disConnect()
+~~~
+
+* 스캔 시작
+~~~kotlin
+  caresensBluetoothService?.startScan()
+~~~
+
+* 스캔 종료
+~~~kotlin
+  caresensBluetoothService?.stopScan()
+~~~
