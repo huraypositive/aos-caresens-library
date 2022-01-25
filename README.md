@@ -160,14 +160,16 @@ dependencyResolutionManagement {
       bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
   }
 ~~~
+
+  
+* 서비스 종료
+~~~kotlin
+  caresensBluetoothService?.unbindService(serviceConnection: ServiceConnection)
+~~~
   
 * 서비스 시작(초기화) 콜백 메서드 설정
 ~~~kotlin
   caresensBluetoothService?.setBluetoothInitializeCallbacks(bluetoothInitializeCallbacks: BluetoothInitializeCallbacks?)
-~~~
-  
-* 서비스 종료
-~~~kotlin
 ~~~
 
 * 스캔 시작
