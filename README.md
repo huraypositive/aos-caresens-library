@@ -26,6 +26,17 @@
   * flag_nomark
   * timeoffset
 
+#Interface
+* BluetoothInitializeCallbacks
+  * fun onSuccess()
+  * fun onError(errorMsg: String?)
+* BluetoothScanCallbacks
+  * fun onScan(state: ScanState, errorMsg: String?, device: ExtendedDevice?)
+* BluetoothConnectionCallbacks
+  * fun onStateChanged(state: ConnectState, errorMsg: String?, deviceInfo: DeviceInfo?)
+* BluetoothDataCallbacks
+  * fun onRead(dataReadState: DataReadState, errorMsg: String?, glucoseRecords: SparceArray<GlucoseRecord>?)  
+
 # Functions
 * CareSenseBluetoothService
   * startScan():Void 기기의 블루투스 스캔을 시작한다
