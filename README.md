@@ -252,6 +252,15 @@ dependencyResolutionManagement {
   caresensBluetoothService?.setBluetoothDataCallbacks(bluetoothDataCallbacks: BluetoothDataCallbacks?)
 ~~~
   
+# Scenario
+ * Step 1. CaresensBluetoothService 초기화 및 서비스 실행 
+ * Step 2. 블루투스 스캔 상태 인터페이스 설정
+ * Step 3. 블루투스 스캔을 통해 Mac Address 리스트를 가져옴
+ * Step 4. 블루투스 연결 상태 인터페이스 설정 
+ * Step 5. 선택한 기기와 블루투스 연결
+ * Step 6. 데이터 상태 인터페이스 설정 
+ * Step 7. Step 6에서 정의한 인터페이스를 통해 데이터(기기 정보 및 혈당 정보) 수신 및 측정 상태 컨트롤
+
 # Library Publish
 * Step 1. GitHub에서 TAG 생성
 * Step 2. 생성한 TAG Release
