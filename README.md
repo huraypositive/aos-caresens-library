@@ -117,16 +117,16 @@ dependencyResolutionManagement {
   * fun onError(errorMsg: String?)
 * BluetoothScanCallbacks
 ```kotlin
-       /**
+    /**
      *  STATE : ScanState_FAIL
      *          ScanState_SCANNING
      *          ScanState_STOPPED
      */
-    fun onScan(state: ScanState, errorMsg: String?, device: ExtendedDevice?)
+    fun onScan(state: ScanState, errorMsg: String?, device: Array<ExtendedDevice>?)
 ```
 * BluetoothConnectionCallbacks
 ```kotlin
-      /**
+    /**
      *  STATE: ConnectState_CONNECTING
      *         ConnectState_CONNECTED
      *         ConnectState_DISCONNECTED
@@ -141,8 +141,7 @@ dependencyResolutionManagement {
 * BluetoothDataCallbacks
 ```kotlin
     /*
-        STATE: DataReadState.READING,
-               DataReadState.DEVICE_INFO_READ_COMPLETE,
+        STATE: DataReadState.DEVICE_INFO_READ_COMPLETE,
                DataReadState.GlUCOSE_RECORD_READ_COMPLETE,
                DataReadState.BLE_DEVICE_NOT_SUPPORTED,
                DataReadState.BLE_OPERATE_FAILED,
@@ -171,6 +170,9 @@ dependencyResolutionManagement {
 * 서비스 등록 (AndroidManifest.xml)
 ```xml
   <service android:name=".CaresensBluetoothService" android:enabled="true" />
+  <service android:name="com.isens.standard.ble.GlucoseBleService" android:enabled="true" />
+```
+
 ```
   
 * 서비스 시작(초기화)
