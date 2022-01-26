@@ -158,10 +158,11 @@ dependencyResolutionManagement {
 * CareSenseBluetoothService
   * startScan():Void 기기의 블루투스 스캔을 시작한다
   * stopScan():Void 기기의 블루투스 스캔을 멈춘다
-  * startConnect(address: String?):Void 전달받은 Mac Address에 해당하는 기기에 연결을 요청한다
+  * connect(device: BluetoothDevice?):Void 해당 기기에 연결을 요청한다
+  * disconnect():Void 연결 해제
   * requestAllRecords(): 기기의 모든 혈당 데이터를 수신
   * requestRecordsGreaterOrEqual(sequenceNumber: Int): sequenceNumber보다 큰 혈당 데이터만 수신
-  * requestRecentRecord(): 가장 최신 혈당 데이터를 수신
+  * requestRecentRecord(): 가장 최신 혈당 데이터를 수신 // 구현안됨 추후 필요 시, 업데이트
   * requestTimeSync(): 시간 정보 동기화(UTC+TZ Time Sync)
   * setGlucoseUnit(glucoseUnit: GlucoseUnit): 혈당 단위 설정 ( GlucoseUnit.MG("mg/dL"), GlucoseUnit.MMOL("mmol/L")
   * getGlucoseUnit(): 혈단 단위 정보
