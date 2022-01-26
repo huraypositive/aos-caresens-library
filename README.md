@@ -164,6 +164,8 @@ dependencyResolutionManagement {
   * requestRecordsGreaterOrEqual(sequenceNumber: Int): sequenceNumber보다 큰 혈당 데이터만 수신
   * requestRecentRecord(): 가장 최신 혈당 데이터를 수신
   * requestTimeSync(): 시간 정보 동기화
+  * setGlucoseUnit(glucoseUnit: GlucoseUnit): 혈당 단위 선택 ( GlucoseUnit.MG("mg/dL"), GlucoseUnit.MMOL("mmol/L")
+  * getGlucoseUnit()
 
 # Usage
 * 서비스 등록 (AndroidManifest.xml)
