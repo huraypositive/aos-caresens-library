@@ -163,7 +163,7 @@ dependencyResolutionManagement {
   * requestAllRecords(): 기기의 모든 혈당 데이터를 수신
   * requestRecordsGreaterOrEqual(sequenceNumber: Int): sequenceNumber보다 큰 혈당 데이터만 수신
   * requestRecentRecord(): 가장 최신 혈당 데이터를 수신
-  * requestTimeSync(): 시간 정보 동기화
+  * requestTimeSync(): 시간 정보 동기화(UTC+TZ Time Sync)
   * setGlucoseUnit(glucoseUnit: GlucoseUnit): 혈당 단위 설정 ( GlucoseUnit.MG("mg/dL"), GlucoseUnit.MMOL("mmol/L")
   * getGlucoseUnit(): 혈단 단위 정보
 
