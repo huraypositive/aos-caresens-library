@@ -1,4 +1,0 @@
-net/huray/caresens/BuildConfig.java
- net.huray.caresens.BuildConfig
-net/huray/caresens/databinding/ActivityMainBinding.java
- net.huray.caresens.databinding.ActivityMainBinding
