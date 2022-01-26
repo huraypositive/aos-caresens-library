@@ -10,6 +10,8 @@ public class GlucoseRecord { //0: default value
 
     public double glucoseData = 0; // glucose value
 
+    public double keton = 0; // Keton
+
     public int flag_cs = 0; // 1: control solution
 
     public int flag_hilow = 0; //-2: ketone low, -1: low, 1: high

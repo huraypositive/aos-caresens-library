@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#333333</color>
+    <color name="blue">#1762c6</color>
+    <color name="edit">#555555</color>
+    <color name="exceed_line">#bbd8f1</color>
+    <color name="exceed_spot">#bcd8ee</color>
+    <color name="exceed_stat">#33ccff</color>
+    <color name="exceed_text">#579fdd</color>
+    <color name="grey">#9c9c9c</color>
+    <color name="grid_line">#c0c0c0</color>
+    <color name="inbounds_spot">#c5e7d5</color>
+    <color name="inbounds_stat">#6bcc99</color>
+    <color name="inbounds_text">#6bcc99</color>
+    <color name="ketone_text">#ee73eb</color>
+    <color name="light_grey">#ededed</color>
+    <color name="line">#e2e2e2</color>
+    <color name="low_line">#f5febe</color>
+    <color name="low_spot">#f9f3b5</color>
+    <color name="low_stat">#f0d100</color>
+    <color name="low_text">#f6ec84</color>
+    <color name="main_bg">#fcfcfc</color>
+    <color name="pink">#ee73eb</color>
+    <color name="under_line">#eeb3ba</color>
+    <color name="under_spot">#edb2b9</color>
+    <color name="under_stat">#ff3333</color>
+    <color name="under_text">#d24151</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="CLOSE">Close</string>
+    <string name="ERROR_AUTH_ERROR_WHILE_BONDED">Download failed (Code 115)</string>
+    <string name="ERROR_CONNECTION_STATE_CHANGE">Download failed (Code 111)</string>
+    <string name="ERROR_DISCOVERY_SERVICE">Download failed (Code 112)</string>
+    <string name="ERROR_SEQUENCE_NUMBER">Download failed (Code 116)</string>
+    <string name="ERROR_WRITE_CHARACTERISTIC">Download failed (Code 114)</string>
+    <string name="ERROR_WRITE_DESCRIPTOR">Download failed (Code 113)</string>
+    <string name="SEARCH">Search</string>
+    <string name="STOP">Stop</string>
+    <string name="ValidationWarningPopup_36">No more than 10 registered meters allowed. Please delete unused meters.</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">BLE(GL) v2.6a</string>
+    <string name="ble_not_supported">This mobile device doesn\'t support Bluetooth 4.0</string>
+    <string name="bond_none">Failed to connect to Bluetooth.\nPlease, try to reconnect.</string>
+    <string name="bonded">Connected to Bluetooth.\nPlease, turn meter on again to download glucose data.</string>
+    <string name="error_software_revision">The meter\'s software version does not support.</string>
+    <string name="gls_operation_failed">Download failed (Code 110)</string>
+    <string name="gls_operation_not_supported">Download failed (Code 109)</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="meter_not_supported">This blood glucose meter not supported. </string>
+    <string name="scanner_action_cancel">Cancel</string>
+    <string name="scanner_action_scan">Scan</string>
+    <string name="scanner_empty">No device found</string>
+    <string name="scanner_subtitle__not_bonded">AVAILABLE DEVICES:</string>
+    <string name="scanner_subtitle_bonded">BONDED DEVICES:</string>
+    <string name="scanner_title">Select device:</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dip</item>
+        <item name="android:background">#e2e2e2</item>
+    </style>
+    <style name="text_label">
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="text_title">
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">16dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>

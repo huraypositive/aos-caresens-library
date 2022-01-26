@@ -42,8 +42,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.isens.standard.ble.Util.runningOnKitkatOrHigher;
-import static com.isens.standard.ble.Const.GlucoseUnitConversionMultiplier;
 import static com.isens.standard.ble.Const.KetoneMultiplier;
 
 import androidx.core.app.NotificationCompat;
@@ -151,7 +149,7 @@ public class GlucoseBleService extends Service {
                 String deviceName = gatt.getDevice().getName();
                 stopScan();
                 // Show device name in UI
-                if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
+                if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
                     broadcastUpdate(Const.INTENT_BLE_DEVICE_CONNECTED, deviceName);
                     broadcastUpdate(Const.INTENT_STOP_SCAN, "");
                 }
@@ -163,11 +161,11 @@ public class GlucoseBleService extends Service {
 
                 if (!mIsDownloadFinished) {
                     broadcastUpdate(Const.INTENT_BLE_READ_COMPLETED, "");
-                    showNoti();
+                    //showNoti();
                     mIsDownloadFinished = true;
                 }
 
-                if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
+                if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
                     disconnect();
                     broadcastUpdate(Const.INTENT_BLE_DEVICE_DISCONNECTED, "");
                 }
@@ -278,7 +276,7 @@ public class GlucoseBleService extends Service {
                         enableTimeSyncNotification(gatt);
                     }
 
-                    if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {  //If auto-download option not checked, do not proceed with time sync & data download.
+                    if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {  //If auto-download option not checked, do not proceed with time sync & data download.
                         broadcastUpdate(Const.INTENT_BLE_CHAR_GLUCOSE_CONTEXT, "");
                         return;
                     }
@@ -294,7 +292,7 @@ public class GlucoseBleService extends Service {
                 }
                 if (Const.BLE_CHAR_CUSTOM_TIME.equals(descriptor.getCharacteristic().getUuid()) ||
                 mCustomTimeCharacteristic.getUuid().equals(Const.BLE_CHAR_CUSTOM_TIME_NEW)) { //FFF1, A3BC
-                    if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) { //If auto-download option not checked, do not proceed with time sync & data download.
+                    if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) { //If auto-download option not checked, do not proceed with time sync & data download.
                         return;
                     }
                     // ###10. TIME SYNC
@@ -319,7 +317,7 @@ public class GlucoseBleService extends Service {
 
                 if (opCode == OP_CODE_NUMBER_OF_STORED_RECORDS_RESPONSE) { // 05: time result
                     Log.d("", "---requestCustomTimeSync");
-                    if (Util.getPreferenceBool(Const.IS_TIMESYNC_UTC_TZ) && mTimesyncUtcTzCnt < 3) {    // if UTC+TZ Time sync option is checked,
+                    if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_TIMESYNC_UTC_TZ) && mTimesyncUtcTzCnt < 3) {    // if UTC+TZ Time sync option is checked,
                         if (mCustomTimeCharacteristic != null) {
                             requestCustomTimeSync();
                         }
@@ -393,7 +391,7 @@ public class GlucoseBleService extends Service {
                     if (isSavedData == false) {
                         mRecords.put(record.sequenceNumber, record);
                         final GlucoseRecord glucoseRecord = record;
-                        Util.setPreference(mSerialNum, record.sequenceNumber);
+                        Util.getInstance(getApplicationContext()).setPreference(mSerialNum, record.sequenceNumber);
                     }
                 } catch (Exception e) {
                 }
@@ -461,8 +459,8 @@ public class GlucoseBleService extends Service {
                     switch (requestedOpCode) {
                         case RESPONSE_SUCCESS:  //01
                             broadcastUpdate(Const.INTENT_BLE_READ_COMPLETED, "");
-                            showNoti();
-                            if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
+                            //showNoti();
+                            if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
                                 return;
                             }
                             mBluetoothGatt.writeCharacteristic(characteristic);
@@ -482,14 +480,14 @@ public class GlucoseBleService extends Service {
 
                     Log.d("", "---requestTotalCount : "+totalCnt);
 
-                    if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
+                    if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
                         return;
                     }
 
                     if (mSerialNum == null)
                         return;
 
-                    int sequence = Util.getPreference(mSerialNum);
+                    int sequence = Util.getInstance(getApplicationContext()).getPreference(mSerialNum);
 
                     // ###12. GET RECORDS
                     if (sequence <= 0) {
@@ -511,8 +509,8 @@ public class GlucoseBleService extends Service {
                                 return;
                             }
                             broadcastUpdate(Const.INTENT_BLE_READ_COMPLETED, "");
-                            showNoti();
-                            if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
+                                //showNoti();
+                            if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD) == false) {
                                 return;
                             }
 
@@ -570,7 +568,7 @@ public class GlucoseBleService extends Service {
                     break;
                 case Const.INTENT_STOP_BLE_SERVICE_FOREGROUND:
                     stopForeground(true);
-                    mNotiManager.cancelAll();
+                    //mNotiManager.cancelAll();
                     initScan();
                     break;
             }
@@ -634,24 +632,24 @@ public class GlucoseBleService extends Service {
         registerReceiver(mBleServiceReceiver, makeBleServiceIntentFilter());
 
         // Notification
-        mNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        /*mNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         mNoti = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.justble).setContentTitle("BLE(GL) Example").setOngoing(true);
         mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         mNoti.setContentIntent(mPendingIntent);
-        mNotiManager.notify(1, mNoti.build());
+        mNotiManager.notify(1, mNoti.build());*/
 
         //
         boolean isBleAvailable = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE) ? true : false;
-        if (isBleAvailable && runningOnKitkatOrHigher()) { // 4.4 or later
+        if (isBleAvailable && Util.getInstance(getApplicationContext()).runningOnKitkatOrHigher()) { // 4.4 or later
             mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
             mBluetoothAdapter = mBluetoothManager.getAdapter();
             if (mBluetoothAdapter == null) {
-                Util.showToast(getString(R.string.ble_not_supported));
+                Util.getInstance(getApplicationContext()).showToast(getString(R.string.ble_not_supported));
             } else {
                 initScan();
             }
         } else {
-            Util.showToast("BLE off. Turn on ble mode");
+            Util.getInstance(getApplicationContext()).showToast("BLE off. Turn on ble mode");
         }
     }
 
@@ -666,14 +664,14 @@ public class GlucoseBleService extends Service {
         stopScan();
 
         //
-        if (Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD)) {
+        if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD)) {
             // make service to foreground(attached with notification) to keep it alive regardless of app status.
             int noti_id = 1;
             startForeground(noti_id, mNoti.build());  //
         } else {
             // stop foreground of this service because the app is foreground.
             stopForeground(true);
-            mNotiManager.cancelAll();
+            //mNotiManager.cancelAll();
         }
 
         // periodic means not always (1 scan per 15s)
@@ -686,7 +684,7 @@ public class GlucoseBleService extends Service {
 
         if (mBluetoothAdapter.isEnabled()
                 && mBluetoothAdapter.getBondedDevices().size() > 0
-                && Util.getPreferenceBool(Const.IS_AUTO_DOWNLOAD)) {
+                && Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_AUTO_DOWNLOAD)) {
             if (mIsActivityForeground) {
                 startScan();
             } else {
@@ -959,7 +957,7 @@ public class GlucoseBleService extends Service {
         // 2.1 Reset TimeOffset to 0
         // 2.2 Reset BaseTime to UTC
         // 2.3 Apply LocalTime to 2.2, save final UTC + TimeZone
-        if (Util.getPreferenceBool(Const.IS_TIMESYNC_UTC_TZ)) {
+        if (Util.getInstance(getApplicationContext()).getPreferenceBool(Const.IS_TIMESYNC_UTC_TZ)) {
             switch (mTimesyncUtcTzCnt) {
                 case 0:
                     Calendar calendar =  Calendar.getInstance();
@@ -1117,7 +1115,7 @@ public class GlucoseBleService extends Service {
         final Intent intent = new Intent(action);
         if (data != "")
             intent.putExtra(Const.INTENT_BLE_EXTRA_DATA, data);
-        sendBroadcast(intent);
+        sendOrderedBroadcast(intent,null);
     }
 
     private float bytesToFloat(byte b0, byte b1) {
@@ -1129,7 +1127,7 @@ public class GlucoseBleService extends Service {
         return b & 0xFF;
     }
 
-    private void showNoti() {
+    /*private void showNoti() {
         if (mIsActivityForeground == false) {
             mNoti = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.justble).setContentTitle("BLE(GL) Example").setOngoing(true);
             mNoti.setContentIntent(mPendingIntent);
@@ -1146,7 +1144,7 @@ public class GlucoseBleService extends Service {
                 mNoti.setPriority(Notification.PRIORITY_HIGH).setDefaults(Notification.DEFAULT_ALL)
                         .setContentText("No data downloaded.");
             }
-            mNotiManager.notify(1, mNoti.build());
+            //mNotiManager.notify(1, mNoti.build());
 
             mHandler.postDelayed(new Runnable() { // To disappear Heads Up notification after 5 seconds
                 @Override
@@ -1156,7 +1154,7 @@ public class GlucoseBleService extends Service {
                 }
             }, 5000);
         }
-    }
+    }*/
 
     public boolean timeSync() {
         mTimesyncUtcTzCnt = 0;
