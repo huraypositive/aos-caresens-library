@@ -3,4 +3,19 @@
     <string name="error_denied_permission">권한을 거부하면 블루투스 서비스를 사용할 수 없습니다.\n\n[설정] > [권한]에서 권한을 설정하세요.</string>
     <string name="error_bluetooth_not_enabled">블루투스 기능이 활성화되어있지 않습니다</string>
     <string name="error_feature_not_supported">지원되지 않는 기능입니다</string>
+
+    <string name="ble_not_supported">This mobile device doesn\'t support Bluetooth 4.0</string>
+    <string name="bond_none">Failed to connect to Bluetooth.\nPlease, try to reconnect.</string>
+    <string name="bonded">Connected to Bluetooth.\nPlease, turn meter on again to download glucose data.</string>
+    <string name="meter_not_supported">This blood glucose meter not supported. </string>
+    <string name="gls_operation_not_supported">Download failed (Code 109)</string>
+    <string name="gls_operation_failed">Download failed (Code 110)</string>
+    <string name="ERROR_CONNECTION_STATE_CHANGE">Download failed (Code 111)</string>
+    <string name="ERROR_DISCOVERY_SERVICE">Download failed (Code 112)</string>
+    <string name="ERROR_WRITE_DESCRIPTOR">Download failed (Code 113)</string>
+    <string name="ERROR_WRITE_CHARACTERISTIC">Download failed (Code 114)</string>
+    <string name="ERROR_AUTH_ERROR_WHILE_BONDED">Download failed (Code 115)</string>
+    <string name="ERROR_SEQUENCE_NUMBER">Download failed (Code 116)</string>
+    <string name="ValidationWarningPopup_36">No more than 10 registered meters allowed. Please delete unused meters.</string>
+    <string name="error_software_revision">The meter\'s software version does not support.</string>
 </resources>
