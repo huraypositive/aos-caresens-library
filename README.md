@@ -86,7 +86,7 @@ dependencyResolutionManagement {
   > 기기 정보
   * name: String? 
   * serialNumber: String?
-  * version: Array<String>?
+  * version: String?
   * totalcount: Int?
   
 # Type Classes
