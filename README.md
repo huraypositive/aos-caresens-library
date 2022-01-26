@@ -201,11 +201,6 @@ dependencyResolutionManagement {
 ~~~kotlin
   caresensBluetoothService?.setBluetoothConnectionCallbacks(bluetoothConnectionCallbacks: BluetoothConnectionCallbacks?)
 ~~~
-  
-* 연결 상태 콜백 메서드 설정
-~~~kotlin
-  caresensBluetoothService?.setBluetoothDataCallbacks(bluetoothDataCallbacks: BluetoothDataCallbacks?)
-~~~
 
 * 전체 혈당 데이터 요청
 ~~~kotlin
@@ -216,4 +211,9 @@ dependencyResolutionManagement {
 * 일부(시퀀스보다 큰) 혈당 데이터 요청
 ~~~kotlin
   caresensBluetoothService?.requestRecordsGreaterOrEqual(sequence: Int)
+~~~
+  
+* 데이터 콜백 메서드 설정
+~~~kotlin
+  caresensBluetoothService?.setBluetoothDataCallbacks(bluetoothDataCallbacks: BluetoothDataCallbacks?)
 ~~~
