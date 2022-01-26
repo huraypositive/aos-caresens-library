@@ -7,8 +7,7 @@ import net.huray.caresens.enums.DataReadState
 
 interface BluetoothDataCallbacks {
     /*
-        STATE: DataReadState.READING,
-               DataReadState.DEVICE_INFO_READ_COMPLETE,
+        STATE: DataReadState.DEVICE_INFO_READ_COMPLETE,
                DataReadState.GlUCOSE_RECORD_READ_COMPLETE,
                DataReadState.BLE_DEVICE_NOT_SUPPORTED,
                DataReadState.BLE_OPERATE_FAILED,
