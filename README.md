@@ -116,11 +116,44 @@ dependencyResolutionManagement {
   * fun onSuccess()
   * fun onError(errorMsg: String?)
 * BluetoothScanCallbacks
-  * fun onScan(state: ScanState, errorMsg: String?, device: ExtendedDevice?)
+```kotlin
+       /**
+     *  STATE : ScanState_FAIL
+     *          ScanState_SCANNING
+     *          ScanState_STOPPED
+     */
+    fun onScan(state: ScanState, errorMsg: String?, device: ExtendedDevice?)
+```
 * BluetoothConnectionCallbacks
-  * fun onStateChanged(state: ConnectState, errorMsg: String?, deviceInfo: DeviceInfo?)
+```kotlin
+      /**
+     *  STATE: ConnectState_CONNECTING
+     *         ConnectState_CONNECTED
+     *         ConnectState_DISCONNECTED
+     *         ConnectState_ERROR
+     */
+    fun onStateChanged(
+        state: ConnectState,
+        errorMsg: String?,
+        deviceInfo: DeviceInfo?
+    )
+```
 * BluetoothDataCallbacks
-  * fun onRead(dataReadState: DataReadState, errorMsg: String?, glucoseRecords: SparceArray<GlucoseRecord>?)  
+```kotlin
+    /*
+        STATE: DataReadState.READING,
+               DataReadState.DEVICE_INFO_READ_COMPLETE,
+               DataReadState.GlUCOSE_RECORD_READ_COMPLETE,
+               DataReadState.BLE_DEVICE_NOT_SUPPORTED,
+               DataReadState.BLE_OPERATE_FAILED,
+               DataReadState.BLE_OPERATE_NOT_SUPPORTED,
+               DataReadState.UNKNOWN_ERROR,
+     */
+    fun onRead(
+        dataReadState: DataReadState, errorMsg: String?, deviceInfo: DeviceInfo?,
+        glucoseRecords: SparseArray<GlucoseRecord>?
+    )
+```
 
 # Functions
 * CareSenseBluetoothService
@@ -130,6 +163,7 @@ dependencyResolutionManagement {
   * requestAllRecords(): 기기의 모든 혈당 데이터를 수신
   * requestRecordsGreaterOrEqual(sequenceNumber: Int): sequenceNumber보다 큰 혈당 데이터만 수신
   * requestRecentRecord(): 가장 최신 혈당 데이터를 수신
+  * requestTimeSync(): 시간 정보 동기화
 
 # Usage
 * 서비스 등록 (AndroidManifest.xml)
@@ -217,3 +251,9 @@ dependencyResolutionManagement {
 ~~~kotlin
   caresensBluetoothService?.setBluetoothDataCallbacks(bluetoothDataCallbacks: BluetoothDataCallbacks?)
 ~~~
+  
+# Library Publish
+* Step 1. GitHub에서 TAG 생성
+* Step 2. 생성한 TAG Release
+* Step 3. https://jitpack.io/ 홈페이지 접속 후, GitHub repo url 입력('hurayPositive/solfit-android-sdk')
+* Step 4. 로그 확인을 통해 정상적으로 Publish 되었는지 확인
