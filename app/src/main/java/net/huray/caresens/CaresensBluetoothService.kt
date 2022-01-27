@@ -189,9 +189,9 @@ open class CaresensBluetoothService : Service() {
         val indexInNotBonded = extendedDevices.indexOf(extendedDevice)
         if(indexInNotBonded >= 0) {
             extendedDevices[indexInNotBonded] = extendedDevice
-            return
+        } else {
+            extendedDevices.add(extendedDevice)
         }
-        extendedDevices.add(extendedDevice)
 
         try {
             bluetoothScanCallbacks?.onScan(
