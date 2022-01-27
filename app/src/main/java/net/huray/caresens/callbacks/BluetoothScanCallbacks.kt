@@ -9,5 +9,5 @@ interface BluetoothScanCallbacks {
      *          ScanState_SCANNING
      *          ScanState_STOPPED
      */
-    fun onScan(state: ScanState, errorMsg: String?, device: ArrayList<ExtendedDevice>?)
+    fun onScan(state: ScanState, errorMsg: String?, devices: ArrayList<ExtendedDevice>?)
 }
