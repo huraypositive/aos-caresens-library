@@ -31,6 +31,7 @@ import net.huray.caresens.enums.DataReadState
 import net.huray.caresens.enums.GlucoseUnit
 import net.huray.caresens.enums.ScanState
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 open class CaresensBluetoothService : Service() {
@@ -55,6 +56,7 @@ open class CaresensBluetoothService : Service() {
 
     private var glucoseUnit = GlucoseUnit.MG
 
+    private var extendedDevices: ArrayList<ExtendedDevice> = ArrayList()
     private val connectedDeviceInfo by lazy { DeviceInfo() }
 
     private val mBleUpdateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -183,11 +185,17 @@ open class CaresensBluetoothService : Service() {
     }
 
     private fun addScannedDevice(device: BluetoothDevice, rssi: Int, isBonded: Boolean) {
+        val extendedDevice = ExtendedDevice(device,rssi, isBonded)
+        val indexInNotBonded = extendedDevices.indexOf(extendedDevice)
+        if(indexInNotBonded >= 0) {
+            extendedDevices[indexInNotBonded] = extendedDevice
+            return
+        }
+        extendedDevices.add(extendedDevice)
+
         try {
             bluetoothScanCallbacks?.onScan(
-                ScanState.SCANNING, "", ExtendedDevice(
-                    device, rssi, isBonded
-                )
+                ScanState.SCANNING, "", extendedDevices
             )
         } catch (e: NullPointerException) {
             bluetoothScanCallbacks?.onScan(
